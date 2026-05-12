@@ -2,6 +2,9 @@ import java.util.*;
 
 public class Pedido {
 
+    // O código faz muitas coisas, ele deve ser dividido em outras classes.
+
+    // Todas as variáveis públicas ferindo o princípio de ocultamento de informação.
     public List<String> produtos = new ArrayList<>();
     public List<Double> precos = new ArrayList<>();
     public List<Integer> quantidades = new ArrayList<>();
@@ -22,6 +25,7 @@ public class Pedido {
         quantidades.add(qtd);
     }
 
+    // Três métodos sobre o cálculo do preço quebrando já a Integridade Conceitual
     public void calcularTotal() {
         total = 0;
         for (int i = 0; i < precos.size(); i++) {
@@ -45,12 +49,14 @@ public class Pedido {
         }
     }
 
+    // Classe pedido com método de atualizar estoque? Seria ideal uma nova classe.
     public void atualizarEstoque() {
         for (String p : produtos) {
             System.out.println("Atualizando estoque de: " + p);
         }
     }
 
+    // Mesma coisa do método acima.
     public void processarPagamento(String tipo) {
         if (tipo.equals("cartao")) {
             System.out.println("Pagamento cartão OK");
@@ -61,10 +67,12 @@ public class Pedido {
         }
     }
 
+    // Idem aos métodos acima.
     public void enviarNotificacao() {
         System.out.println("Email enviado para " + clienteEmail);
     }
 
+    // Idem aos métodos acima.
     public void gerarRelatorio() {
         System.out.println("Relatorio do pedido:");
         for (String p : produtos) {
