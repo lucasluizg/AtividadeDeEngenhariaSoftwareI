@@ -1,3 +1,5 @@
+package repositories;
+
 public class BancoDeDados {
 
     public static void salvarPedido(Pedido p) {

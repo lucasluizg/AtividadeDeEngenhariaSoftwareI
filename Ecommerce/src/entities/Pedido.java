@@ -1,3 +1,7 @@
+package entities;
+
+import repositories.BancoDeDados;
+
 import java.util.*;
 
 public class Pedido {
@@ -97,4 +101,3 @@ public class Pedido {
         salvarNoBanco();
         status = "FINALIZADO";
     }
-}

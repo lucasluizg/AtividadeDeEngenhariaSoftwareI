@@ -1,3 +1,7 @@
+import entities.Pedido;
+import entities.RelatorioService;
+import repositories.BancoDeDados;
+
 public class Sistema {
 
     public static void main(String[] args) {
