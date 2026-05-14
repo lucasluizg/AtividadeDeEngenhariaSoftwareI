@@ -1,4 +1,4 @@
-import java.util.*;
+/*import java.util.*;
 
 public class Pedido {
 
@@ -8,10 +8,6 @@ public class Pedido {
     public List<String> produtos = new ArrayList<>();
     public List<Double> precos = new ArrayList<>();
     public List<Integer> quantidades = new ArrayList<>();
-
-    public String clienteNome;
-    public String clienteEmail;
-    public String clienteEndereco;
 
     public double total;
     public double frete;
@@ -97,4 +93,4 @@ public class Pedido {
         salvarNoBanco();
         status = "FINALIZADO";
     }
-}
+} */
