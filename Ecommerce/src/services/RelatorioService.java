@@ -1,4 +1,6 @@
-/*public class RelatorioService {
+/*package services;
+
+public class RelatorioService {
 
     public void gerar(Pedido p) {
         System.out.println("entities.Cliente: " + p.clienteNome);

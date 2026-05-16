@@ -9,7 +9,7 @@ public class Produto {
     private String nome;
     private int id;
     private double preco;
-    private static int quantidade;
+    private static int quantidadeEstoque = 0;
 
     public Produto() {}
 
@@ -26,11 +26,10 @@ public class Produto {
     }
 
     public static int getQuantidade() {
-        return quantidade;
+        return quantidadeEstoque;
     }
 
-    //Pega os produtos do estoque atual
-    public List<String> produtosNoEstoque() {
-        return produtos;
+    public static void atualizaEstoque(int quantidade) {
+        quantidadeEstoque += quantidade;
     }
 }

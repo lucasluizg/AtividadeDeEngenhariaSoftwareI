@@ -1,4 +1,6 @@
 import entities.Cliente;
+import entities.Estoque;
+import entities.Produto;
 
 import java.util.Scanner;
 
@@ -7,6 +9,8 @@ public class Sistema {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = new Cliente();
+        Produto produto = new Produto();
+        Estoque estoque = new Estoque<>();
 
         //Entrando no sistema
         System.out.println("Bem vindo a Fast-By");
@@ -25,7 +29,21 @@ public class Sistema {
 
             //Utiliza o método para determinar o email do cliente
             cliente.setEmailCliente(emailFormatado);
-            System.out.println("entrei");
+
+            //Lista os produtos disponíveis para a compra
+            System.out.println("Produtos disponíveis: ");
+            estoque.listarEstoque();
+            System.out.println("Digite o produto que deseja comprar: ");
+            String nomeProduto = scanner.nextLine();
+
+            Produto produtoEncontrado = estoque.buscarProdutoPorNome(nomeProduto);
+
+            if (produtoEncontrado != null) {
+                System.out.println("Você selecionou: " + produtoEncontrado.getNome());
+                System.out.println("Preço: R$ " + produtoEncontrado.getPreco());
+            } else {
+                System.out.println("Produto não encontrado.");
+            }
 
         } else if (respostaEmail2.equalsIgnoreCase("nao")) {
             System.out.println("Digite o email novamente:  (Sem o @gmail.com)");
