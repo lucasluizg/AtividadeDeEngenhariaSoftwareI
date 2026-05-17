@@ -1,34 +1,30 @@
-import entities.Pedido;
-import entities.RelatorioService;
+import entities.*;
 import repositories.BancoDeDados;
 
 public class Sistema {
 
     public static void main(String[] args) {
 
-        Pedido p = new Pedido();
+        Cliente cliente = new Cliente("Maria", "maria@email.com", "SC");
 
-        /*
-        Aqui está ferindo o processo de ocultamento de informação colocando
-        dados diretamente no atributo do objeto.
-        */
-        p.clienteNome = "Maria";
-        p.clienteEmail = "maria@email.com";
-        p.clienteEndereco = "SC";
+        Pedido pedido = new Pedido();
 
+        ItemPedido notebook = new ItemPedido("Notebook", 3000, 1);
+        pedido.adicionarProduto(notebook);
 
-        p.adicionarItem("Notebook", 3000, 1);
-        p.adicionarItem("Mouse", 100, 2);
+        ItemPedido mouse = new ItemPedido("Mouse", 100, 2);
+        pedido.adicionarProduto(mouse);
 
-        p.finalizar();
+        FinalizarPedido finalizar = new FinalizarPedido();
+        finalizar.executar(pedido, cliente, "PIX");
 
         // Novamente ferindo o processo de ocultamento de informação.
         BancoDeDados.salvarLog("Sistema finalizado");
 
         RelatorioService r = new RelatorioService();
-        r.gerar(p);
+        // r.gerar(p);
 
-        System.out.println("Frete: " + p.frete);
-        System.out.println("Status: " + p.status);
+        /* System.out.println("Frete: " + p.frete);
+        System.out.println("Status: " + p.status); */
     }
 }

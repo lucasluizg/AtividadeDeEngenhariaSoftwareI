@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estoque <T> {
+abstract class Estoque <T> {
 
     private List<T> produtos = new ArrayList<>();
 

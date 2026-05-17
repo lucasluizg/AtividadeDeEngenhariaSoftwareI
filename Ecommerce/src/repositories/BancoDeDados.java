@@ -1,5 +1,7 @@
 package repositories;
 
+import entities.Pedido;
+
 public class BancoDeDados {
 
     public static void salvarPedido(Pedido p) {
