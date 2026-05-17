@@ -1,30 +1,42 @@
 package entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Cliente {
 
-    private String clienteNome;
-    private String clienteEmail;
-    private String clienteEndereco;
+    private String nomeCliente;
+    private String emailCliente;
+    private String enderecoCliente;
 
     public Cliente(String nome, String email, String endereco) {
-        clienteNome = nome;
-        clienteEmail = email;
-        clienteEndereco = endereco;
+        nomeCliente = nome;
+        emailCliente = email;
+        enderecoCliente = endereco;
     }
 
-    public String getClienteNome() {
-        return clienteNome;
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
+        if (!emailCliente.contains("@")) {
+            throw new RuntimeException("O Email não tem @");
+        }
     }
 
-    public String getClienteEmail() {
-        return clienteEmail;
+    public String getEnderecoCliente() {
+        return enderecoCliente;
+    }
+    public void setEnderecoCliente(String enderecoCliente) {
+        this.enderecoCliente = enderecoCliente;
     }
 
-    public String getClienteEndereco() {
-        return clienteEndereco;
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
+    /*
+    public void pagarPedido(ItemPedido pedidoEfetuado) {
+    } */
 }
