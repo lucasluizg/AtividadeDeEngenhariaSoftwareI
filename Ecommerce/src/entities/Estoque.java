@@ -6,7 +6,6 @@ import java.util.List;
 public class Estoque <T> {
 
     private List<Produto> produtos = new ArrayList<>();
-    private static int quantidade;
 
     public Estoque() {}
 
