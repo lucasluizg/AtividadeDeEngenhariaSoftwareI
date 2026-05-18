@@ -28,7 +28,7 @@ public class FinalizarPedido {
             total *= 0.9;
         }
 
-        if (cliente.getClienteEndereco().equalsIgnoreCase("sc")) {
+        if (cliente.getEnderecoCliente().equalsIgnoreCase("sc")) {
             frete = total * 0.05;
         } else {
             frete = total * 0.15;
@@ -51,7 +51,7 @@ public class FinalizarPedido {
             pagamento.pagar(total);
         }
 
-        System.out.println("E-mail enviado para " + cliente.getClienteEmail());
+        System.out.println("E-mail enviado para " + cliente.getEmailCliente());
 
         System.out.println("Relatório do pedido: ");
         for (ItemPedido item: listaItens) {
@@ -60,7 +60,7 @@ public class FinalizarPedido {
         System.out.println("Total: " + total);
 
         BancoDeDados.salvarPedido(pedido);
-        BancoDeDados.salvarLog("Pedido salvo: " + cliente.getClienteNome());
+        BancoDeDados.salvarLog("Pedido salvo: " + cliente.getNomeCliente());
 
 
     }

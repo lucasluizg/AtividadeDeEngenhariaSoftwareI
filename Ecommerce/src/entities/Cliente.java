@@ -6,12 +6,6 @@ public class Cliente {
     private String emailCliente;
     private String enderecoCliente;
 
-    public Cliente(String nome, String email, String endereco) {
-        nomeCliente = nome;
-        emailCliente = email;
-        enderecoCliente = endereco;
-    }
-
     public String getEmailCliente() {
         return emailCliente;
     }
