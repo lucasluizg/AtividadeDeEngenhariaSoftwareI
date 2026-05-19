@@ -1,17 +1,14 @@
-import entities.Carrinho;
-import entities.Cliente;
-import entities.Estoque;
-import entities.Produto;
+import entities.*;
 import services.InterfaceUsuario;
 
 import java.util.Scanner;
 
-public class Sistema implements InterfaceUsuario {
+public class Sistema {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = new Cliente();
-        Sistema sistema = new Sistema();
+        InterfaceUsuario ui = new InterfaceUsuario();
 
         //Entrando no sistema
         System.out.println("Bem vindo a Fast-By");
@@ -36,11 +33,11 @@ public class Sistema implements InterfaceUsuario {
             if (resposta.equalsIgnoreCase("sim")) {
                 cliente.setEmailCliente(emailFormatado);
                 emailConfirmado = true;
+                ui.sistemaEcommerce();
             } else if (!resposta.equalsIgnoreCase("nao")) {
                 System.out.println("Opção inválida.");
             }
         }
         //IMPLEMENTAÇÃO DO MÉTODO SISTEMA, AQUI TA TODA A INTERAÇÃO DO USUÁRIO
-        sistema.sistemaEcommerce();
     }
 }

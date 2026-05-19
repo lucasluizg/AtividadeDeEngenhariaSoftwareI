@@ -8,6 +8,10 @@ public class Pedido {
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<ItemPedido> listaItens =  new ArrayList<>();
 
+    public void adicionarCliente(Cliente cliente) {
+        listaClientes.add(cliente);
+    }
+
     public void adicionarProduto(ItemPedido item) {
         listaItens.add(item);
     }
@@ -19,7 +23,5 @@ public class Pedido {
     public List<ItemPedido> getListaItens() {
         return listaItens;
     }
-
-
 
 }

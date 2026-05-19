@@ -5,22 +5,20 @@ import java.util.List;
 
 public class ItemPedido {
 
-    private String nome;
-    private double preco;
+    private Produto produto;
     private int quantidade;
 
-    public ItemPedido(String nome, double preco, int quantidade) {
-        this.nome = nome;
-        this.preco = preco;
+    public ItemPedido(Produto produto, int quantidade) {
+        this.produto = produto;
         this.quantidade = quantidade;
     }
 
-    public String getNome() {
-        return nome;
+    public double precoProduto() {
+        return produto.getPreco();
     }
 
-    public double getPreco() {
-        return preco;
+    public String nomeProduto() {
+        return produto.getNome();
     }
 
     public int getQuantidade() {

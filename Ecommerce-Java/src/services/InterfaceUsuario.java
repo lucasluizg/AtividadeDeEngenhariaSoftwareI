@@ -7,7 +7,7 @@ import entities.Produto;
 
 import java.util.Scanner;
 
-public interface InterfaceUsuario {
+public class InterfaceUsuario {
     Scanner scanner = new Scanner(System.in);
     Carrinho carrinho = new Carrinho();
     Produto MouseGamer = new Produto(1, "Mouse Gamer", 80.00);
@@ -15,7 +15,7 @@ public interface InterfaceUsuario {
     Produto CadeiraGamer = new Produto(3, "Cadeira Gamer Mancer", 850.00);
     Estoque estoque = new Estoque<>();
 
-    public default void sistemaEcommerce() {
+    public void sistemaEcommerce() {
 
         //Adicionando os produtos no estoque
         estoque.adicionarProdutoNoEstoque(MouseGamer);
