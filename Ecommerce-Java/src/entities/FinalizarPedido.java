@@ -19,7 +19,7 @@ public class FinalizarPedido {
 
         total = 0;
         for (int i = 0; i < listaItens.size(); i++) {
-            total += listaItens.get(i).getPreco() * listaItens.get(i).getQuantidade();
+            total += listaItens.get(i).precoProduto() * listaItens.get(i).getQuantidade();
         }
 
         if (total > 500) {
@@ -35,7 +35,7 @@ public class FinalizarPedido {
         }
 
         for (ItemPedido item: listaItens) {
-            System.out.println("Atualizando estoque de: " + item.getNome());
+            System.out.println("Atualizando estoque de: " + item.nomeProduto());
         }
 
         Pagamento pagamento;
@@ -55,7 +55,7 @@ public class FinalizarPedido {
 
         System.out.println("Relatório do pedido: ");
         for (ItemPedido item: listaItens) {
-            System.out.println(item.getNome());
+            System.out.println(item.nomeProduto());
         }
         System.out.println("Total: " + total);
 
