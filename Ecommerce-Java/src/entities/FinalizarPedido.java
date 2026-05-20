@@ -5,6 +5,7 @@ import services.Boleto;
 import services.Cartao;
 import services.Pagamento;
 import services.Pix;
+import services.Status;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class FinalizarPedido {
     private double frete;
     private String status;
 
-    public void executar(Pedido pedido, Cliente cliente , String tipoPagamento) {
+    public void executar(Pedido pedido, Cliente cliente, String tipoPagamento, Estoque estoque) {
         List<ItemPedido> listaItens = pedido.getListaItens();
 
         total = 0;
@@ -34,35 +35,37 @@ public class FinalizarPedido {
             frete = total * 0.15;
         }
 
-        for (ItemPedido item: listaItens) {
-            System.out.println("Atualizando estoque de: " + item.nomeProduto());
+        // Retira os produtos do estoque
+        for (ItemPedido item : listaItens) {
+            Produto prod = estoque.buscarProdutoPorNome(item.nomeProduto());
+            if (prod != null) {
+                estoque.retirarProdutoDoEstoque(prod);
+            }
         }
 
         Pagamento pagamento;
 
         if (tipoPagamento.equalsIgnoreCase("pix")) {
             pagamento = new Pix();
-            pagamento.pagar(total);
+            pagamento.pagar(total + frete);
         } else if (tipoPagamento.equalsIgnoreCase("cartao")) {
             pagamento = new Cartao();
-            pagamento.pagar(total);
+            pagamento.pagar(total + frete);
         } else if (tipoPagamento.equalsIgnoreCase("boleto")) {
             pagamento = new Boleto();
-            pagamento.pagar(total);
+            pagamento.pagar(total + frete);
         }
 
         System.out.println("E-mail enviado para " + cliente.getEmailCliente());
 
-        System.out.println("Relatório do pedido: ");
-        for (ItemPedido item: listaItens) {
-            System.out.println(item.nomeProduto());
-        }
-        System.out.println("Total: " + total);
+        // Salva os dados no pedido para o relatório
+        pedido.clienteNome = cliente.getNomeCliente();
+        pedido.total = total;
+        pedido.frete = frete;
+        pedido.status = Status.CONFIRMADO;
 
         BancoDeDados.salvarPedido(pedido);
         BancoDeDados.salvarLog("Pedido salvo: " + cliente.getNomeCliente());
-
-
     }
 
     /*

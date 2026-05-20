@@ -64,4 +64,8 @@ public class Carrinho {
         }
         return null;
     }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 }

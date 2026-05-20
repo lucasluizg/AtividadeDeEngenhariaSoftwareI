@@ -33,7 +33,7 @@ public class Sistema {
             if (resposta.equalsIgnoreCase("sim")) {
                 cliente.setEmailCliente(emailFormatado);
                 emailConfirmado = true;
-                ui.sistemaEcommerce();
+                ui.sistemaEcommerce(cliente);
             } else if (!resposta.equalsIgnoreCase("nao")) {
                 System.out.println("Opção inválida.");
             }

@@ -3,7 +3,11 @@ package services;
 import entities.Carrinho;
 import entities.Cliente;
 import entities.Estoque;
+import entities.FinalizarPedido;
+import entities.ItemPedido;
+import entities.Pedido;
 import entities.Produto;
+import entities.RelatorioService;
 
 import java.util.Scanner;
 
@@ -14,8 +18,9 @@ public class InterfaceUsuario {
     Produto Notebook = new Produto(2, "Notebook Gamer", 3000.00);
     Produto CadeiraGamer = new Produto(3, "Cadeira Gamer Mancer", 850.00);
     Estoque estoque = new Estoque<>();
+    Pedido ultimoPedido = null;
 
-    public void sistemaEcommerce() {
+    public void sistemaEcommerce(Cliente cliente) {
 
         //Adicionando os produtos no estoque
         estoque.adicionarProdutoNoEstoque(MouseGamer);
@@ -140,13 +145,57 @@ public class InterfaceUsuario {
                     break;
 
                         case 4:
-                            //PRECISA SER IMPLEMENTADO
+                            if (carrinho.estaVazio()) {
+                                System.out.println("O carrinho está vazio!");
+                                System.out.println();
+                                break;
+                            }
 
+                            System.out.println("Digite o seu estado (ex: SC): ");
+                            String estado = scanner.nextLine();
+                            cliente.setEnderecoCliente(estado);
+
+                            System.out.println("Selecione o método de pagamento (pix/cartao/boleto): ");
+                            String tipoPagamento = scanner.nextLine();
+
+                            if (!tipoPagamento.equalsIgnoreCase("pix") &&
+                                    !tipoPagamento.equalsIgnoreCase("cartao") &&
+                                    !tipoPagamento.equalsIgnoreCase("boleto")) {
+                                System.out.println("Método de pagamento inválido.");
+                                System.out.println();
+                                break;
+                            }
+
+                            // Criando o pedido
+                            ultimoPedido = new Pedido();
+                            ultimoPedido.adicionarCliente(cliente);
+
+                            // Adicionando itens do carrinho ao pedido
+                            for (Produto prod : carrinho.getProdutos()) {
+                                ItemPedido item = new ItemPedido(prod, 1);
+                                ultimoPedido.adicionarProduto(item);
+                            }
+
+                            // Finalizando o pedido
+                            FinalizarPedido finalizar = new FinalizarPedido();
+                            finalizar.executar(ultimoPedido, cliente, tipoPagamento, estoque);
+
+                            // Limpando o carrinho após a compra
+                            carrinho.limparCarrinho();
+                            System.out.println("Compra efetuada com sucesso!");
+                            System.out.println();
                             break;
 
                         case 5:
-                            //PRECISA SER IMPLEMENTADO
+                            if (ultimoPedido == null) {
+                                System.out.println("Nenhum pedido foi realizado ainda!");
+                                System.out.println();
+                                break;
+                            }
 
+                            RelatorioService relatorio = new RelatorioService();
+                            relatorio.gerar(ultimoPedido);
+                            System.out.println();
                             break;
 
                         case 6:
