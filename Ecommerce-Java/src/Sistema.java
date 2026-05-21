@@ -1,14 +1,13 @@
 import entities.*;
+import java.util.Scanner;
 import services.InterfaceUsuario;
 
-import java.util.Scanner;
-
-public class Sistema {
+public class Sistema implements InterfaceUsuario {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = new Cliente();
-        InterfaceUsuario ui = new InterfaceUsuario();
+        Sistema sistema = new Sistema();
 
         //Entrando no sistema
         System.out.println("Bem vindo a Fast-By");
@@ -33,7 +32,7 @@ public class Sistema {
             if (resposta.equalsIgnoreCase("sim")) {
                 cliente.setEmailCliente(emailFormatado);
                 emailConfirmado = true;
-                ui.sistemaEcommerce(cliente);
+                sistema.sistemaEcommerce(cliente);
             } else if (!resposta.equalsIgnoreCase("nao")) {
                 System.out.println("Opção inválida.");
             }
