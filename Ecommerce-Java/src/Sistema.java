@@ -37,6 +37,5 @@ public class Sistema implements InterfaceUsuario {
                 System.out.println("Opção inválida.");
             }
         }
-        //IMPLEMENTAÇÃO DO MÉTODO SISTEMA, AQUI TA TODA A INTERAÇÃO DO USUÁRIO
     }
 }
